@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lemon|Lobster" rel="stylesheet"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Box</title>
+</head>
+<body ng-app="recipeBox">
+
+    <div class="container-fluid">
+
+       <div class="row">
+       <div ng-view="">
+
+
+   </div>
+</div>
+</div>
+
+
+<footer>
+<div class="footer">
+    <p>&copy; Chambers Creative Web Development</p>
+</div>
+</footer>
+
+<script src="app.js"></script>
+<script src="services/services.js"></script>
+<script src="controllers/recipesController.js"></script>
+<script src="controllers/addRecipesController.js"></script>
+<script src="controllers/editRecipesController.js"></script>
+<script src="controllers/currentRecipesController.js"></script>
+<script src="controllers/shoppingListController.js"></script>
+<script src="controllers/authenticationController.js"></script>
+
+</body>
+</html>

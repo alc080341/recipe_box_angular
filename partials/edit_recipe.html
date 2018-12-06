@@ -1,0 +1,162 @@
+   <header class="header_wrapper">
+				<div class="user_status"><p>Logged in as {{getUserStatus}}</p></div>
+			<div class="logout"><a href="#!/logout">Logout</a></div>
+                     <div class="logo">
+                        <h1>Recipe Box</h1>
+                    </div>
+                </div>
+
+                <div class="menu">
+                   <a href="#!/main_page">MY RECIPES</a>
+                   <a href="#!/add_recipe">ADD RECIPES</a>
+                   <a href="#!/shopping_list">SHOPPING LIST</a>
+               </div>
+
+           </header>
+
+<h3>Edit recipe</h3>
+<p>Follow the steps to edit your recipe</p>
+
+<div class="this_recipe_content">
+	<div class="this_recipe_top">
+		<h3>1. Edit recipe image</h3>
+		<div class="this_recipe_top_addimage">
+			<p>Paste in image URL here:</p> 
+			<input type="text" ng-init="imageEdit=recipe.recipeImage" ng-model="imageEdit" />
+			<button ng-click="editImage()">Add image</button>
+			<div>
+				<img src="{{recipe.recipeImage}}" />
+			</div>
+		</div>
+	</div>
+
+	<div class="this_recipe_top">
+		<h3>2. Edit recipe title</h3>
+		<br />
+		<input type="text" ng-init="recipeTitle=recipe.recipeName" ng-model="recipeTitle" placeholder="Add recipe title just here." minlength="1" maxlength="50" />
+		<button ng-click="editTitle()">Update recipe title</button>
+		<br />
+		<br />
+		
+		<p class="title_element">Title:</p>
+
+		<h3>{{recipe.recipeName}}</h3>
+		<br />
+
+		<hr>
+
+		<h3>3. Edit recipe ingredients</h3>
+		<button ng-click="showHide('ingredientsDisplay')">{{show_hide_ingredients}}</button>
+		<div ng-show="ingredientsIsVisible">
+			<br />
+			<p>Add an ingredient by entering the number of units of the ingredient or the amount required, the measurement being used, and the title.</p>
+			<p>i.e: 1 x 400 grams can of tomatoes.</p>
+
+			<form name="ingredientsForm" class="recipe_form_element">
+				<div>
+					<label for="amount&units">Select unit or measurement</label>
+					<select id="unitOrMeasurement" ng-model="unitOrMeasurement">
+						<option autocomplete="off" value="Unit">Unit</option>
+						<option autocomplete="off" value="Measurement">Measurement</option>
+					</select>
+
+					<p>(Is your ingredient a whole unit of something such as a whole chicken or a can, or is it a measurement i.e 500grams of flour?)</p>
+					<br/>
+				</div>
+				<div>
+					<label for="amount">Enter number of units or measurement per unit.</label>
+					<input type="number" id="amount" placeholder="400" ng-model="ingredientAmount" min="0" max="10000">
+				</div>
+				<div>
+					<label for="measurement">Choose measurement</label>
+					<select id="measurement" ng-model="ingredientMeasurement">
+						<option autocomplete="off" value="none">none</option>
+						<option autocomplete="off" value="ml">ml</option>
+						<option autocomplete="off" value="litre">litre/litres</option>
+						<option autocomplete="off" value="tsp">tsp</option>
+						<option autocomplete="off" value="tbsp">tbsp</option>
+						<option autocomplete="off" selected="selected" value="grams">gram/grams</option>
+					</select> 		
+				</div>
+				<div>
+					<label for="title">Enter ingredient name</label>
+					<input type="text" id="title" ng-model="ingredientTitle" placeholder="can of tomatoes." maxlength="80" minlength="0" />
+				</div>
+				<button ng-click="addIngredient(unitOrMeasurement,ingredientAmount,ingredientMeasurement,ingredientTitle)">Save ingredient</button>
+			</form>
+		</div>
+		<br />
+		<br/>
+		<p class="title_element">Ingredients:</p>
+		<div class="this_recipe_add_ingredients_list">
+			<ul>
+				<li ng-repeat="ingredient in recipe.recipeIngredients">
+					<div>
+						{{ingredient.units}} x {{ingredient.amount}}{{ingredient.measurement}} {{ingredient.ingredient}}
+					</div>
+					<div>
+						<button ng-click="editIngredient(ingredient.ingredientID)">Edit</button>
+						<button ng-click="removeIngredient(ingredient.ingredientID)">Remove</button>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+
+	</div>
+
+	<br />
+	<br />
+	<div class="this_recipe_bottom">
+		<h3>4. Edit recipe method</h3>
+
+		<button ng-click="showHide('methodDisplay')">{{show_hide_method}}</button>
+		<br />
+		<br />
+		<div ng-show="methodIsVisible">
+			<p>Add method one step at a time, or type in the whole method, seperating each step of the method with three forward slash ///</p>
+			<br />
+			<textarea rows="4" cols="50" ng-model="completeMethod" placeholder="Add method step on at a time, or add entire method (seperate each method step with ///)."></textarea>
+			<br/>
+			<button ng-click="addCompleteMethod(completeMethod)">Add method step/entire method</button>
+			<br />
+			<br />
+		</div>
+		<br />
+		<br />
+		<p class="title_element">Method:</p>
+
+		<ol>
+			<li class="this_recipe_method_list" ng-repeat="step in recipe.recipeMethod">
+				{{step.step}}
+				<br />
+				<div>
+					<button ng-click="removeMethodStep(step.stepID)">Remove</button>
+					<button ng-click="methodStepIsVisible = !methodStepIsVisible;">{{editMethodStepButton}}</button>
+					<br />
+					<div ng-show="methodStepIsVisible">
+						<br />
+
+						<div>
+							<textarea ng-init='stepEdit=step.step' rows="4" cols="50" ng-model="stepEdit"></textarea>
+						</div>
+						<div>
+							<button ng-click="editMethodStep(step.stepID); methodStepIsVisible = !methodStepIsVisible;">Save edit</button>
+						</div>
+					</div>
+					<br/>
+					<br/>
+				</div>
+			</li>
+		</ol>
+
+	</div>
+</div>
+<div class="this_recipe_bottom_submit">
+	<br />
+	<br />
+	<br />
+
+	<button ng-click="saveRecipe()">Save recipe</button>
+</div>
+</div>

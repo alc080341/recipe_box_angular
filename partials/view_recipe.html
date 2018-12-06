@@ -1,0 +1,53 @@
+
+   <header class="header_wrapper">
+				<div class="user_status"><p>Logged in as {{getUserStatus}}</p></div>
+				<div class="logout"><a href="#!/logout">Logout</a></div>
+                    <div class="header">
+                    <div class="logo">
+                        <h1>Recipe Box</h1>
+                    </div>
+                </div>
+
+                <div class="menu">
+                   <a href="#!/main_page">MY RECIPES</a>
+                   <a href="#!/add_recipe">ADD RECIPES</a>
+                   <a href="#!/shopping_list">SHOPPING LIST</a>
+               </div>
+
+           </header>
+
+	<div class="this_recipe_content">
+    <div class="this_recipe_top">
+		<img src="{{recipe.recipeImage}}"/>
+	</div>
+
+	<div class="this_recipe_top">
+	<h3>{{recipe.recipeName}}</h3>
+	<br />
+	<p class="title_element">Ingredients:</p>
+	<ul>
+		<li class="ingredients_list" ng-repeat="ingredients in recipe.recipeIngredients">
+	      {{ingredients.ingredient}}
+       </li>
+
+	</ul>
+
+    </div>
+	<div class="this_recipe_bottom">
+	<p class="title_element">Method:</p>
+		<ol>
+		<li class="method_list" ng-repeat="method in recipe.recipeMethod">
+	      {{method.step}}
+       </li>
+      </ol>
+
+	</div>
+    </div>
+    <div class="this_recipe_options">
+
+	<a href="#!/edit_recipe/{{recipe.recipeID}}"><button>Edit recipe</button></a>
+    <button ng-click="deleteRecipe(recipe.recipeID)">Delete recipe</button>
+    <button ng-click="mergeIngredientsToList()">Merge ingredients into shopping list</button>
+    </div>
+	</div>
+	

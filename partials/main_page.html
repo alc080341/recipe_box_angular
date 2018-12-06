@@ -1,0 +1,70 @@
+
+
+        <header class="header_wrapper">
+
+				<div class="user_status"><p>Logged in as {{getUserStatus}}</p></div>
+				<div class="logout"><a href="#!/logout">Logout</a></div>
+        
+                <div class="header">
+                    <div class="logo">
+                        <h1>Recipe Box</h1>
+                    </div>
+                </div>
+
+                <div class="menu">
+                   <a href="#!/main_page">MY RECIPES</a>
+                   <a href="#!/add_recipe">ADD RECIPES</a>
+                   <a href="#!/shopping_list">SHOPPING LIST</a>
+               </div>
+
+           </header>
+
+	<div class="search_bar">
+		<input type="text" ng-model="search" placeholder="Search by name..." /> <img src="images/search_icon.png" alt="search icon"/>
+	</div>
+
+	<div class="main_content">
+		<div class="alert_no_recipes" ng-show="showAlertNoRecipes">{{alertNoRecipes}}
+
+
+
+<!--
+ <div class="content">
+                <div class="imgholder">
+                    <img src="images/519165-1-eng-GB_chicken-and-bean-summer-stew-recipe-470x540.jpg" class="photo1"/>
+                    <img src="images/belgian-waffle.jpg" class="photo2"/>
+                    <img src="images/519165-1-eng-GB_chicken-and-bean-summer-stew-recipe-470x540.jpg" class="photo3"/>
+                    <img src="images/belgian-waffle.jpg" class="photo4"/>
+                    <img src="images/519165-1-eng-GB_chicken-and-bean-summer-stew-recipe-470x540.jpg" class="photo5"/>
+                </div>
+            </div>
+
+
+-->
+
+		</div>
+		<div class="recipe_list">
+
+
+			<div class="recipe_item" ng-repeat="recipe in recipes |  filter:search">
+
+				<div class="recipe_item_header">
+
+					<div class="recipe_item_title">
+						<p>{{recipe.recipeName}}</p>
+					</div>
+					<div class="recipe_item_image">
+						<a href="#!/view_recipe/{{recipe.recipeID}}"><img src="{{recipe.recipeImage}}"/></a>
+					</div>
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+
+
+</div>
+

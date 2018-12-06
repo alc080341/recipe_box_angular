@@ -1,0 +1,68 @@
+   <header class="header_wrapper">
+				<div class="user_status"><p>Logged in as {{getUserStatus}}</p></div>
+				<div class="logout"><a href="#!/logout">Logout</a></div>
+                <div class="header">
+                    <div class="logo">
+                        <h1>Recipe Box</h1>
+                    </div>
+                </div>
+
+                <div class="menu">
+                   <a href="#!/main_page">MY RECIPES</a>
+                   <a href="#!/add_recipe">ADD RECIPES</a>
+                   <a href="#!/shopping_list">SHOPPING LIST</a>
+               </div>
+
+        </header>
+
+<h3>Shopping list</h3>
+<br />
+<br />
+<div class="shopping_list">
+	<div class="shopping_list_ingredients_list">
+
+		<ul>
+			<li ng-repeat="ingredient in ingredients">
+
+				<div>
+					{{ingredient.units}} x {{ingredient.amount}}{{ingredient.measurement}} {{ingredient.ingredient}}
+				</div>       
+				<button ng-click="ingredientEditIsVisible = !ingredientEditIsVisible; editIngredient(ingredient.ingredientID)">Edit ingredient</button>
+				<button ng-click="deleteIngredient(ingredient.ingredientID)">Delete ingredient</button>
+				<br /><br />
+				<div ng-show="ingredientEditIsVisible">
+
+					
+
+
+					<form name="ingredientsForm" class="recipe_form_element">
+						<div>
+							<label for="amount">Enter number of units or amount.</label>
+							<input type="number" id="amount" placeholder="400" ng-model="ingredientAmount" min="0" max="10000">
+						</div>
+						<div>
+							<label for="measurement">Choose measurement</label>
+							<select id="measurement" ng-model="ingredientMeasurement">
+								<option autocomplete="off" value="none">none</option>
+								<option autocomplete="off" value="ml">ml</option>
+								<option autocomplete="off" value="litre">litre/litres</option>
+								<option autocomplete="off" value="tsp">tsp</option>
+								<option autocomplete="off" value="tbsp">tbsp</option>
+								<option autocomplete="off" selected="selected" value="grams">gram/grams</option>
+							</select> 		
+						</div>
+						<div>
+							<label for="title">Enter ingredient name</label>
+							<input type="text" id="title" ng-model="ingredientTitle" placeholder="can of tomatoes." maxlength="80" minlength="0" />
+						</div>
+						<button ng-click="saveEditedIngredient(ingredient.ingredientID, ingredient.type, ingredient.amount, ingredient.units); ingredientEditIsVisible = !ingredientEditIsVisible;">Save ingredient</button>
+					</form>
+
+				</div>
+				<hr />
+			</li>
+
+		</ul>
+
+	</div>
+</div>
